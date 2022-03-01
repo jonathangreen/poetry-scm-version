@@ -4,7 +4,6 @@ import wrapt
 from cleo.io.io import IO
 from poetry.console.application import Application
 from poetry.core.packages.project_package import ProjectPackage
-from poetry.core.semver.version import Version
 from poetry.factory import Factory
 from poetry.plugins import ApplicationPlugin, Plugin
 from poetry.poetry import Poetry
@@ -18,10 +17,8 @@ def wrapper(
 ) -> ProjectPackage:
     name, version = args
     if version == "scm-version":
-        parsed_version = Version.from_parts(0)
-        return ProjectPackage(name, parsed_version, version)
-    else:
-        return wrapped(name, version)
+        version = "0"
+    return wrapped(name, version)
 
 
 class ScmPatchPlugin(ApplicationPlugin):
