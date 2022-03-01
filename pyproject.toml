@@ -2,6 +2,23 @@
 build-backend = "poetry.core.masonry.api"
 requires = ["poetry-core>=1.0.0"]
 
+[tool.mypy]
+files = [
+    "src"
+]
+warn_redundant_casts = true
+warn_unreachable = true
+warn_unused_configs = true
+warn_unused_ignores = true
+
+[[tool.mypy.overrides]]
+ignore_missing_imports = true
+module = [
+    "wrapt",
+    "poetry.*",
+    "cleo.*"
+]
+
 [tool.poetry]
 authors = ["Jonathan Green <jonathan@razzard.com>"]
 description = "Poetry plugin to set package version from SCM tag."
@@ -16,9 +33,8 @@ poetry = "^1.2.0a1"
 python = "^3.7"
 wrapt = "^1.13.3"
 
-[tool.poetry.dev-dependencies]
-
 [tool.poetry.group.dev.dependencies]
+mypy = "^0.931"
 pre-commit = "^2.17.0"
 
 [tool.poetry.plugins."poetry.application.plugin"]
