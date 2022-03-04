@@ -3,9 +3,7 @@ build-backend = "poetry.core.masonry.api"
 requires = ["poetry-core>=1.0.0"]
 
 [tool.mypy]
-files = [
-    "src"
-]
+files = ["src"]
 warn_redundant_casts = true
 warn_unreachable = true
 warn_unused_configs = true
@@ -23,10 +21,8 @@ module = [
 authors = ["Jonathan Green <jonathan@razzard.com>"]
 description = "Poetry plugin to set package version from SCM tag."
 name = "poetry-scm-version"
-packages = [
-    { include = "poetry_scm_version", from = "src" }
-]
-version = "scm-version"
+packages = [{ include = "poetry_scm_version", from = "src" }]
+version = "scm"
 
 [tool.poetry.dependencies]
 poetry = "^1.2.0a1"
@@ -36,9 +32,10 @@ wrapt = "^1.13.3"
 [tool.poetry.group.dev.dependencies]
 mypy = "^0.931"
 pre-commit = "^2.17.0"
+pytest = "^7.0.1"
 
 [tool.poetry.plugins."poetry.application.plugin"]
-poetry-scm-version = "poetry_scm_version.plugin:ScmPatchPlugin"
+poetry-scm-version = "poetry_scm_version.patch:MonkeyPatchPlugin"
 
 [tool.poetry.plugins."poetry.plugin"]
 poetry-scm-version = "poetry_scm_version.plugin:ScmVersionPlugin"
