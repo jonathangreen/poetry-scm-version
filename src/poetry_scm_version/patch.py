@@ -8,8 +8,8 @@ from poetry.plugins import ApplicationPlugin
 
 
 class MonkeyPatchPlugin(ApplicationPlugin):
-    FUNCTION = "get_package"
-    VERSION_STRING = "scm"
+    FUNCTION: str = "get_package"
+    VERSION_STRING: str = "scm"
 
     @classmethod
     def get_package_wrapper(
@@ -27,11 +27,12 @@ class MonkeyPatchPlugin(ApplicationPlugin):
     def activate(self, application: Optional[Application] = None):
         wrapt.wrap_function_wrapper(Factory, self.FUNCTION, self.get_package_wrapper)
 
-    def deactivate(self):
-        f = getattr(Factory, self.FUNCTION, None)
+    @classmethod
+    def deactivate(cls):
+        f = getattr(Factory, cls.FUNCTION, None)
         if (
             f is not None
             and isinstance(f, wrapt.ObjectProxy)
             and hasattr(f, "__wrapped__")
         ):
-            setattr(Factory, self.FUNCTION, f.__wrapped__)
+            setattr(Factory, cls.FUNCTION, f.__wrapped__)

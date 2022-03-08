@@ -1,0 +1,9 @@
+[build-system]
+build-backend = "poetry.core.masonry.api"
+requires = ["poetry-core>=1.0.0"]
+
+[tool.poetry]
+authors = ["Super Cool <super-cool@package.com>"]
+description = "This is a test"
+name = "test_package"
+version = "scm"
