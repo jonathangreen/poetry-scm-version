@@ -13,7 +13,6 @@ warn_unused_ignores = true
 ignore_missing_imports = true
 module = [
     "wrapt",
-    "poetry.*",
     "cleo.*",
     "jsonschema"
 ]

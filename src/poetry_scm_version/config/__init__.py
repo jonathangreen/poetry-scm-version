@@ -1,7 +1,7 @@
 import json
 from dataclasses import dataclass
 from pathlib import Path
-from typing import List, Mapping, Optional, Sequence
+from typing import List, Mapping, Optional, Sequence, Type, TypeVar
 
 from jsonschema import Draft7Validator
 from poetry.core.pyproject.toml import PyProjectTOML
@@ -9,6 +9,8 @@ from tomlkit.toml_document import TOMLDocument
 
 SCHEMA_FILE: str = "schema.json"
 CONFIG_KEY: str = "tool.poetry-scm-version"
+
+T = TypeVar("T", bound="Config")
 
 
 @dataclass
@@ -27,7 +29,7 @@ class Config:
     dirty: bool = False
 
     @classmethod
-    def from_project(cls, project: PyProjectTOML):
+    def from_project(cls: Type[T], project: PyProjectTOML) -> T:
         config = project.data
         for key in CONFIG_KEY.split("."):
             config = config.get(key, {})

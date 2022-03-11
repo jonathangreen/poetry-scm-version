@@ -1,4 +1,4 @@
-from typing import Callable, Dict, Optional, Tuple, Type
+from typing import Any, Callable, Dict, Optional, Tuple
 
 import wrapt
 from poetry.console.application import Application
@@ -15,20 +15,20 @@ class MonkeyPatchPlugin(ApplicationPlugin):
     @staticmethod
     def get_package_wrapper(
         wrapped: Callable[[str, str], ProjectPackage],
-        instance: Type,
+        instance: object,
         args: Tuple[str, str],
-        kwargs: Dict,
+        kwargs: Dict[str, Any],
     ) -> ProjectPackage:
         name, version = args
         if version == VERSION_STRING:
             version = "0"
         return wrapped(name, version)
 
-    def activate(self, application: Optional[Application] = None):
+    def activate(self, application: Optional[Application] = None) -> None:
         wrapt.wrap_function_wrapper(Factory, self.FUNCTION, self.get_package_wrapper)
 
     @classmethod
-    def deactivate(cls):
+    def deactivate(cls) -> None:
         f = getattr(Factory, cls.FUNCTION, None)
         if (
             f is not None
