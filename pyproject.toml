@@ -14,7 +14,8 @@ ignore_missing_imports = true
 module = [
     "wrapt",
     "poetry.*",
-    "cleo.*"
+    "cleo.*",
+    "jsonschema"
 ]
 
 [tool.poetry]
@@ -25,6 +26,7 @@ packages = [{ include = "poetry_scm_version", from = "src" }]
 version = "scm"
 
 [tool.poetry.dependencies]
+dunamai = "^1.9.0"
 poetry = "^1.2.0a1"
 python = "^3.7"
 wrapt = "^1.13.3"
@@ -40,3 +42,6 @@ poetry-scm-version = "poetry_scm_version.patch:MonkeyPatchPlugin"
 
 [tool.poetry.plugins."poetry.plugin"]
 poetry-scm-version = "poetry_scm_version.plugin:ScmVersionPlugin"
+
+[tool.poetry-scm-version]
+foo = "bar"

@@ -6,21 +6,21 @@ from poetry.core.packages.project_package import ProjectPackage
 from poetry.factory import Factory
 from poetry.plugins import ApplicationPlugin
 
+from poetry_scm_version import VERSION_STRING
+
 
 class MonkeyPatchPlugin(ApplicationPlugin):
     FUNCTION: str = "get_package"
-    VERSION_STRING: str = "scm"
 
-    @classmethod
+    @staticmethod
     def get_package_wrapper(
-        cls,
         wrapped: Callable[[str, str], ProjectPackage],
         instance: Type,
         args: Tuple[str, str],
         kwargs: Dict,
     ) -> ProjectPackage:
         name, version = args
-        if version == cls.VERSION_STRING:
+        if version == VERSION_STRING:
             version = "0"
         return wrapped(name, version)
 

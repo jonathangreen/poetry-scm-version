@@ -5,6 +5,7 @@ from poetry.core.packages.project_package import ProjectPackage
 from poetry.core.version.exceptions import InvalidVersion
 from poetry.factory import Factory
 
+from poetry_scm_version import VERSION_STRING
 from poetry_scm_version.patch import MonkeyPatchPlugin
 
 
@@ -12,7 +13,7 @@ from poetry_scm_version.patch import MonkeyPatchPlugin
 def test_func() -> Callable[[], ProjectPackage]:
     def run() -> ProjectPackage:
         f = getattr(Factory, MonkeyPatchPlugin.FUNCTION)
-        return f("test_package", MonkeyPatchPlugin.VERSION_STRING)
+        return f("test_package", VERSION_STRING)
 
     return run
 
