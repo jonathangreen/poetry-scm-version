@@ -76,7 +76,14 @@ def test_config_default(load_config, param, default):
 
 
 @pytest.mark.parametrize(
-    "config", [{"vcs": "invalid"}, {"style": "foo"}, {"format": "test", "dirty": True}]
+    "config",
+    [
+        {"vcs": "invalid"},
+        {"style": "foo"},
+        {"format": "test", "dirty": True},
+        {"metadata": "True"},
+        {"format-jinja-imports": []},
+    ],
 )
 def test_config_exception(load_config, config):
     with pytest.raises(RuntimeError):
