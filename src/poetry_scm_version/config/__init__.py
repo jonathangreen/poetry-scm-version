@@ -63,7 +63,7 @@ class Config:
         schema = json.loads(schema_file.read_text())
 
         validator = Draft7Validator(schema)
-        validation_errors = sorted(validator.iter_errors(config), key=lambda e: e.path)  # type: ignore
+        validation_errors = sorted(validator.iter_errors(config), key=lambda e: e.path)
 
         errors = [
             cls._format_error(error.message, error.absolute_path)
