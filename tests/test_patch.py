@@ -1,4 +1,4 @@
-from typing import Callable
+from typing import Callable, Generator
 
 import pytest
 from poetry.core.packages.project_package import ProjectPackage
@@ -19,24 +19,28 @@ def test_func() -> Callable[[], ProjectPackage]:
 
 
 @pytest.fixture
-def patch() -> MonkeyPatchPlugin:
+def patch() -> Generator[MonkeyPatchPlugin, None, None]:
     c = MonkeyPatchPlugin()
     c.activate()
     yield c
     c.deactivate()
 
 
-def test_normal_exception(test_func):
+def test_normal_exception(test_func: Callable[[], ProjectPackage]) -> None:
     with pytest.raises(InvalidVersion):
         test_func()
 
 
-def test_patch_no_exception(patch, test_func):
+def test_patch_no_exception(
+    patch: MonkeyPatchPlugin, test_func: Callable[[], ProjectPackage]
+) -> None:
     package = test_func()
     assert package.version.text == "0"
 
 
-def test_deactivate_patch(patch, test_func):
+def test_deactivate_patch(
+    patch: MonkeyPatchPlugin, test_func: Callable[[], ProjectPackage]
+) -> None:
     test_func()
     patch.deactivate()
     with pytest.raises(InvalidVersion):

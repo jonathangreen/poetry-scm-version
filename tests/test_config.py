@@ -1,4 +1,4 @@
-from typing import Any, Callable, Mapping
+from typing import Any, Callable, Mapping, Union
 from unittest.mock import create_autospec
 
 import pytest
@@ -10,7 +10,7 @@ from poetry_scm_version.config import CONFIG_KEY, Config
 @pytest.fixture
 def load_config() -> Callable[[Mapping[str, Any]], Config]:
     def load(data: Mapping[str, Any]) -> Config:
-        def make_config(key: str, data: Mapping[str, Any]):
+        def make_config(key: str, data: Mapping[str, Any]) -> Mapping[str, Any]:
             sep = "."
             if sep in key:
                 [current, next] = key.split(".", 1)
@@ -49,7 +49,9 @@ def load_config() -> Callable[[Mapping[str, Any]], Config]:
         ("bump", True),
     ],
 )
-def test_config(load_config, param, value):
+def test_config(
+    load_config: Callable[[Mapping[str, Any]], Config], param: str, value: str
+) -> None:
     c = load_config({param: value})
     assert getattr(c, param.replace("-", "_")) == value
 
@@ -70,7 +72,11 @@ def test_config(load_config, param, value):
         ("bump", False),
     ],
 )
-def test_config_default(load_config, param, default):
+def test_config_default(
+    load_config: Callable[[Mapping[str, Any]], Config],
+    param: str,
+    default: Union[None, str, bool],
+) -> None:
     c = load_config({})
     assert getattr(c, param.replace("-", "_")) == default
 
@@ -85,6 +91,8 @@ def test_config_default(load_config, param, default):
         {"format-jinja-imports": []},
     ],
 )
-def test_config_exception(load_config, config):
+def test_config_exception(
+    load_config: Callable[[Mapping[str, Any]], Config], config: Mapping[str, Any]
+) -> None:
     with pytest.raises(RuntimeError):
         load_config(config)
