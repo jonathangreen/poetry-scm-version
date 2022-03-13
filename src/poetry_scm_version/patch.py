@@ -1,4 +1,10 @@
-from typing import Any, Callable, Dict, Optional, Tuple
+from typing import (
+    Any,
+    Callable,
+    Dict,
+    Optional,
+    Tuple,
+)
 
 import wrapt
 from poetry.console.application import Application

@@ -1,4 +1,9 @@
-from typing import Any, Callable, Type, TypeVar
+from typing import (
+    Any,
+    Callable,
+    Type,
+    TypeVar,
+)
 
 T = TypeVar("T", bound="object")
 

@@ -4,7 +4,15 @@
 
 import datetime as dt
 from enum import Enum
-from typing import Any, Callable, Mapping, Optional, Sequence, Tuple, Union
+from typing import (
+    Any,
+    Callable,
+    Mapping,
+    Optional,
+    Sequence,
+    Tuple,
+    Union,
+)
 
 _VERSION_PATTERN: str
 

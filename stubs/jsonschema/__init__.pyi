@@ -1,5 +1,11 @@
 import abc
-from typing import Any, ClassVar, Iterator, Type, TypeVar
+from typing import (
+    Any,
+    ClassVar,
+    Iterator,
+    Type,
+    TypeVar,
+)
 
 T = TypeVar("T", bound="_Error")
 

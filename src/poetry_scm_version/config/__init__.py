@@ -1,7 +1,14 @@
 import json
 from dataclasses import dataclass
 from pathlib import Path
-from typing import List, Mapping, Optional, Sequence, Type, TypeVar
+from typing import (
+    List,
+    Mapping,
+    Optional,
+    Sequence,
+    Type,
+    TypeVar,
+)
 
 from jsonschema import Draft7Validator
 from poetry.core.pyproject.toml import PyProjectTOML

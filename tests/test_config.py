@@ -1,10 +1,18 @@
-from typing import Any, Callable, Mapping, Union
+from typing import (
+    Any,
+    Callable,
+    Mapping,
+    Union,
+)
 from unittest.mock import create_autospec
 
 import pytest
 from tomlkit.toml_document import TOMLDocument
 
-from poetry_scm_version.config import CONFIG_KEY, Config
+from poetry_scm_version.config import (
+    CONFIG_KEY,
+    Config,
+)
 
 
 @pytest.fixture

@@ -7,9 +7,11 @@ from typing import Optional
 import jinja2
 from cleo.io.io import IO
 from cleo.io.outputs.output import Verbosity
-from dunamai import _VERSION_PATTERN, Style, Vcs
-from dunamai import Version as DVersion
 from dunamai import (
+    _VERSION_PATTERN,
+    Style,
+    Vcs,
+    Version as DunamiVersion,
     bump_version,
     check_version,
     serialize_pep440,
@@ -41,12 +43,9 @@ class ScmVersionPlugin(Plugin):
 
     def get_version(self) -> str:
         vcs = Vcs(self._config.vcs)
-        if self._config.style is not None:
-            style = Style(self._config.style)
-        else:
-            style = None
+        style = Style(self._config.style) if self._config.style is not None else None
         pattern = self._config.pattern or _VERSION_PATTERN
-        version = DVersion.from_vcs(vcs, pattern, self._config.latest_tag)
+        version = DunamiVersion.from_vcs(vcs, pattern, self._config.latest_tag)
         bump = self._config.bump and version.distance > 0
 
         if self._config.format_jinja:

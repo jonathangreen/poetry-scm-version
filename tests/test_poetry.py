@@ -1,5 +1,8 @@
 from pathlib import Path
-from typing import Callable, List
+from typing import (
+    Callable,
+    List,
+)
 
 import entrypoints
 import poetry

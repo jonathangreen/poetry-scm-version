@@ -1,4 +1,7 @@
-from typing import Callable, Generator
+from typing import (
+    Callable,
+    Generator,
+)
 
 import pytest
 from poetry.core.packages.project_package import ProjectPackage
