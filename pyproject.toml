@@ -8,6 +8,7 @@ profile = "black"
 [tool.mypy]
 files = ["src", "tests"]
 mypy_path = "$MYPY_CONFIG_FILE_DIR/stubs"
+no_implicit_optional = true
 strict = true
 warn_redundant_casts = true
 warn_unreachable = true

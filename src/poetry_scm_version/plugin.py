@@ -84,14 +84,11 @@ class ScmVersionPlugin(Plugin):
             if style is not None:
                 check_version(serialized, style)
         else:
-            # These type ignores are necessary because upstream library does not
-            # properly annotate these variables as Optional, when they do actually
-            # take None as a possible argument.
             serialized = version.serialize(
-                metadata=self._config.metadata,  # type: ignore
+                metadata=self._config.metadata,
                 dirty=self._config.dirty,
-                format=self._config.format,  # type: ignore
-                style=style,  # type: ignore
+                format=self._config.format,
+                style=style,
                 bump=bump,
                 tagged_metadata=self._config.tagged_metadata,
             )
