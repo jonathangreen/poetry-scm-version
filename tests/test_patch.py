@@ -1,6 +1,9 @@
 from typing import (
+    Any,
     Callable,
     Generator,
+    List,
+    Mapping,
 )
 
 import pytest
@@ -48,3 +51,20 @@ def test_deactivate_patch(
     patch.deactivate()
     with pytest.raises(InvalidVersion):
         test_func()
+
+
+@pytest.mark.parametrize(
+    "args, kwargs",
+    [
+        (["test", "scm"], {}),
+        (["test"], {"version": "scm"}),
+        ([], {"name": "test", "version": "scm"}),
+    ],
+)
+def test_args(
+    patch: MonkeyPatchPlugin, args: List[str], kwargs: Mapping[str, Any]
+) -> None:
+    f = getattr(Factory, MonkeyPatchPlugin.FUNCTION)
+    package = f(*args, **kwargs)
+    assert package.name == "test"
+    assert package.version.text == "0"

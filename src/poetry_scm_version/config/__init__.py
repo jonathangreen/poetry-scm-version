@@ -3,9 +3,7 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import (
     List,
-    Mapping,
     Optional,
-    Sequence,
     Type,
     TypeVar,
 )
@@ -26,8 +24,6 @@ class Config:
     pattern: Optional[str] = None
     metadata: Optional[bool] = None
     format: Optional[str] = None
-    format_jinja: Optional[str] = None
-    format_jinja_imports: Optional[Sequence[Mapping[str, str]]] = None
     style: Optional[str] = None
     vcs: str = "any"
     latest_tag: bool = False
@@ -77,26 +73,14 @@ class Config:
             for error in validation_errors
         ]
 
-        if "format" in config or "format-jinja" in config:
+        if "format" in config:
             for prop in ["metadata", "tagged-metadata", "dirty"]:
                 if prop in config:
                     errors.append(
                         cls._format_error(
-                            "Not allowed when 'format' or 'format-jinja' is also defined.",
+                            "Not allowed when 'format' is also defined.",
                             prop,
                         )
                     )
-
-        if "format" in config and "format-jinja" in config:
-            errors.append(
-                cls._format_error(
-                    "Only one of 'format' or 'format-jinja' can be defined.", "format"
-                )
-            )
-
-        if "format-jinja-imports" in config and "format-jinja" not in config:
-            errors.append(
-                cls._format_error("'format-jinja' not defined.", "format-jinja-imports")
-            )
 
         return errors

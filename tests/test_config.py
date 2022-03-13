@@ -49,7 +49,6 @@ def load_config() -> Callable[[Mapping[str, Any]], Config]:
         ("tagged-metadata", True),
         ("dirty", True),
         ("format", "test"),
-        ("format-jinja", "test"),
         ("style", "pep440"),
         ("style", "semver"),
         ("style", "pvp"),
@@ -74,7 +73,6 @@ def test_config(
         ("tagged-metadata", False),
         ("dirty", False),
         ("format", None),
-        ("format-jinja", None),
         ("style", None),
         ("latest-tag", False),
         ("bump", False),
@@ -96,7 +94,6 @@ def test_config_default(
         {"style": "foo"},
         {"format": "test", "dirty": True},
         {"metadata": "True"},
-        {"format-jinja-imports": []},
     ],
 )
 def test_config_exception(

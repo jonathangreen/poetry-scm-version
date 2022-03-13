@@ -34,25 +34,6 @@
     "format": {
       "type": "string"
     },
-    "format-jinja": {
-      "type": "string"
-    },
-    "format-jinja-imports": {
-      "type": "array",
-      "items": {
-        "type": "object",
-        "additionalProperties": false,
-        "properties": {
-          "module": {
-            "type": "string"
-          },
-          "item": {
-            "type": "string"
-          }
-        },
-        "required": ["module"]
-      }
-    },
     "style": {
       "enum": [
         "pep440",
