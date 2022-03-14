@@ -1,6 +1,11 @@
 [build-system]
-build-backend = "poetry.core.masonry.api"
-requires = ["poetry-core>=1.0.0"]
+backend-path = ["src"]
+build-backend = "poetry_scm_version.masonry.api"
+requires = [
+    "poetry>=1.2.0a1",
+    "dunamai>=1.9.0",
+    "wrapt>=1.13.3"
+]
 
 [tool.isort]
 combine_as_imports = true

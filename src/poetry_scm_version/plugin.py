@@ -74,4 +74,5 @@ class ScmVersionPlugin(Plugin):
             verbosity=Verbosity.VERBOSE,
         )
         version_obj = Version.parse(version_string)
-        poetry.package.set_version(version_obj)
+        poetry.package._version = version_obj
+        poetry.package._pretty_version = version_obj.text

@@ -8,8 +8,8 @@ from typing import (
 
 import wrapt
 from poetry.console.application import Application
+from poetry.core.factory import Factory
 from poetry.core.packages.project_package import ProjectPackage
-from poetry.factory import Factory
 from poetry.plugins import ApplicationPlugin
 
 from poetry_scm_version import VERSION_STRING
@@ -43,7 +43,7 @@ class MonkeyPatchPlugin(ApplicationPlugin):
             version = None
 
         if version == VERSION_STRING:
-            return ProjectPackage(name, "0", "0")
+            return ProjectPackage(name, "0", version)
         else:
             return wrapped(*args, **kwargs)
 
