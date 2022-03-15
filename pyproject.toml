@@ -48,9 +48,12 @@ poetry = "^1.2.0a1"
 python = "^3.7"
 wrapt = "^1.13.3"
 
-[tool.poetry.group.dev.dependencies]
+[tool.poetry.group.ci.dependencies]
 mypy = "^0.931"
 pre-commit = "^2.17.0"
+tox = "^3.24.5"
+
+[tool.poetry.group.dev.dependencies]
 pyfakefs = "^4.5.5"
 pytest = "^7.0.1"
 

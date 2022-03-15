@@ -12,13 +12,16 @@ from poetry.core.version.exceptions import InvalidVersion
 from poetry.factory import Factory
 
 from poetry_scm_version import VERSION_STRING
-from poetry_scm_version.patch import MonkeyPatchPlugin
+from poetry_scm_version.patch import (
+    MonkeyPatchPlugin,
+    MonkeyPatchPoetry,
+)
 
 
 @pytest.fixture
 def test_func() -> Callable[[], ProjectPackage]:
     def run() -> ProjectPackage:
-        f = getattr(Factory, MonkeyPatchPlugin.FUNCTION)
+        f = getattr(Factory, MonkeyPatchPoetry.FUNCTION)
         return f("test_package", VERSION_STRING)
 
     return run
@@ -64,7 +67,7 @@ def test_deactivate_patch(
 def test_args(
     patch: MonkeyPatchPlugin, args: List[str], kwargs: Mapping[str, Any]
 ) -> None:
-    f = getattr(Factory, MonkeyPatchPlugin.FUNCTION)
+    f = getattr(Factory, MonkeyPatchPoetry.FUNCTION)
     package = f(*args, **kwargs)
     assert package.name == "test"
     assert package.version.text == "0"
