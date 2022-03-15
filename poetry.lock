@@ -153,7 +153,7 @@ python-versions = "*"
 
 [[package]]
 name = "dunamai"
-version = "1.10.0"
+version = "1.11.0"
 description = "Dynamic version generation"
 category = "main"
 optional = false
@@ -698,7 +698,7 @@ testing = ["pytest (>=6)", "pytest-checkdocs (>=2.4)", "pytest-flake8", "pytest-
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.7"
-content-hash = "a63cab91519ae484a9f0defba3c299409c766310dab6ff05cb41a98c122c8fc2"
+content-hash = "dfe670353a364667067e68031fd36330fb5cec70e5e7539214fe7668ea39e8b0"
 
 [metadata.files]
 appdirs = [
@@ -824,8 +824,8 @@ distlib = [
     {file = "distlib-0.3.4.zip", hash = "sha256:e4b58818180336dc9c529bfb9a0b58728ffc09ad92027a3f30b7cd91e3458579"},
 ]
 dunamai = [
-    {file = "dunamai-1.10.0-py3-none-any.whl", hash = "sha256:74d09e3e903fd7a1218120ede557bcf30fd274fd80a3f1ad71921bd943944500"},
-    {file = "dunamai-1.10.0.tar.gz", hash = "sha256:8f880666168bf7be6d795e39a6c80451caf7ec430f0f0c2d920e5d9bbb439b15"},
+    {file = "dunamai-1.11.0-py3-none-any.whl", hash = "sha256:356308618710b4e32d5b614571c850e7b19f57217ecf311f600f4638ccda5e2c"},
+    {file = "dunamai-1.11.0.tar.gz", hash = "sha256:338f9be40c9aa974c4bdc4fb6d49a630692315593c45b23b5941c5298c075567"},
 ]
 entrypoints = [
     {file = "entrypoints-0.3-py2.py3-none-any.whl", hash = "sha256:589f874b313739ad35be6e0cd7efde2a4e9b6fea91edcc34e58ecbb8dbe56d19"},

@@ -1,7 +1,7 @@
 from cleo.io.io import IO
 from cleo.io.outputs.output import Verbosity
 from dunamai import (
-    _VERSION_PATTERN,
+    VERSION_SOURCE_PATTERN,
     Style,
     Vcs,
     Version as DunamiVersion,
@@ -21,7 +21,7 @@ class ScmVersionPlugin(Plugin):
     def get_version(self) -> str:
         vcs = Vcs(self._config.vcs)
         style = Style(self._config.style) if self._config.style is not None else None
-        pattern = self._config.pattern or _VERSION_PATTERN
+        pattern = self._config.pattern or VERSION_SOURCE_PATTERN
 
         try:
             version = DunamiVersion.from_vcs(vcs, pattern, self._config.latest_tag)

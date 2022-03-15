@@ -2,8 +2,8 @@
 backend-path = ["src"]
 build-backend = "poetry_scm_version.masonry.api"
 requires = [
-    "poetry>=1.2.0a1",
     "dunamai>=1.9.0",
+    "poetry>=1.2.0a1",
     "wrapt>=1.13.3"
 ]
 
@@ -27,12 +27,12 @@ warn_unused_ignores = true
 [[tool.mypy.overrides]]
 ignore_missing_imports = true
 module = [
-    "wrapt",
     "cleo.*",
+    "entrypoints",
     "jsonschema",
     "poetry.*",
-    "entrypoints",
-    "pyfakefs.*"
+    "pyfakefs.*",
+    "wrapt"
 ]
 
 [tool.poetry]
@@ -43,7 +43,7 @@ packages = [{ include = "poetry_scm_version", from = "src" }]
 version = "scm"
 
 [tool.poetry.dependencies]
-dunamai = "^1.9.0"
+dunamai = "^1.11.0"
 poetry = "^1.2.0a1"
 python = "^3.7"
 wrapt = "^1.13.3"
