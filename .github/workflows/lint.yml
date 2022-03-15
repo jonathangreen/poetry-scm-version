@@ -24,7 +24,7 @@ jobs:
       # Need to unset our version string to bootstrap our
       # own install, otherwise we can't install from source.
       - name: Install scm-version 🥾
-        run: >
+        run: |
           sed -i 's/version = "scm"/version = "0"/g' pyproject.toml
           poetry plugin add $(pwd)
           git checkout pyproject.toml
