@@ -40,9 +40,7 @@ jobs:
 
     - name: Install Project 🚀
       run: |
-        poetry install
-      env:
-        POETRY_VIRTUALENVS_CREATE: false
+        poetry install --no-root
 
     - name: Perform CodeQL Analysis 🤖
       uses: github/codeql-action/analyze@v1
