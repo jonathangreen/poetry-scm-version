@@ -29,11 +29,9 @@ jobs:
           poetry plugin add $(pwd)
           git checkout pyproject.toml
 
-      - name: Install CI Tools 🔧
+      - name: Install Project 🚀
         run: |
-          poetry install --only ci
-        env:
-          POETRY_VIRTUALENVS_CREATE: false
+          poetry install
 
       - name: Type Check ✅
-        run: mypy --no-incremental
+        run: poetry run mypy --no-incremental

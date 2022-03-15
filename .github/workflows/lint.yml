@@ -32,8 +32,6 @@ jobs:
       - name: Install CI Tools 🔧
         run: |
           poetry install --only ci
-        env:
-          POETRY_VIRTUALENVS_CREATE: false
 
       - name: Restore pre-commit cache 🏎
         uses: actions/cache@v2
@@ -43,4 +41,4 @@ jobs:
           restore-keys: pre-commit-${{ runner.os }}-py${{ env.PYTHON_VERSION }}
 
       - name: Lint ✅
-        run: pre-commit run --all-files --show-diff-on-failure
+        run: poetry run pre-commit run --all-files --show-diff-on-failure
