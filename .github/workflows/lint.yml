@@ -21,6 +21,9 @@ jobs:
       - name: Install Poetry 📦
         uses: ./.github/actions/poetry
 
+      - name: Install scm-version 🥾
+        run: poetry plugin add .
+
       - name: Install CI Tools 🔧
         run: |
           poetry install --only ci

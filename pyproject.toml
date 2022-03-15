@@ -40,7 +40,7 @@ authors = ["Jonathan Green <jonathan@razzard.com>"]
 description = "Poetry plugin to set package version from SCM tag."
 name = "poetry-scm-version"
 packages = [{ include = "poetry_scm_version", from = "src" }]
-version = "scm"
+version = 0
 
 [tool.poetry.dependencies]
 dunamai = "^1.11.0"
