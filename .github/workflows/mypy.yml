@@ -22,7 +22,7 @@ jobs:
         uses: ./.github/actions/poetry
 
       - name: Install scm-version 🥾
-        run: poetry plugin add ../poetry-scm-version
+        run: poetry plugin add $(pwd)
 
       - name: Install CI Tools 🔧
         run: |
