@@ -34,10 +34,10 @@ jobs:
       with:
         languages: ${{ matrix.language }}
         setup-python-dependencies: false
-        
+
     - name: Install Poetry 📦
       uses: ./.github/actions/poetry
-      
+
     - name: Install Project 🚀
       run: |
         poetry install
