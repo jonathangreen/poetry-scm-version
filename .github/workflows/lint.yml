@@ -22,11 +22,18 @@ jobs:
         uses: ./.github/actions/poetry
 
       - name: Install scm-version 🥾
-        run: poetry plugin add $(pwd)
+        run:
+          # Need to unset our version string to bootstrap our
+          # own install, otherwise we can't install from source.
+          sed 's/version = "scm"/version = "0"/g' pyproject.toml
+          poetry plugin add $(pwd)
+          git checkout pyproject.toml
 
       - name: Install CI Tools 🔧
         run: |
           poetry install --only ci
+        env:
+          POETRY_VIRTUALENVS_CREATE: false
 
       - name: Restore pre-commit cache 🏎
         uses: actions/cache@v2
