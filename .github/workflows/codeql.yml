@@ -41,10 +41,10 @@ jobs:
     - name: Install Project 🚀
       id: poetry
       run: |
-        poetry install --no-root
+        poetry install --no-root --without ci
         echo "::set-output name=PYTHON_PATH::$(poetry run which python)"
 
     - name: Perform CodeQL Analysis 🤖
       uses: github/codeql-action/analyze@v1
-      env: 
+      env:
         CODEQL_PYTHON: "${{ steps.poetry.outputs.PYTHON_PATH }}"
