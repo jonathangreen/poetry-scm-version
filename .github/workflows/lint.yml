@@ -26,7 +26,7 @@ jobs:
           poetry install --only ci
 
       - name: Restore pre-commit cache 🏎
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: ~/.cache/pre-commit
           key: pre-commit-${{ runner.os }}-py${{ env.PYTHON_VERSION }}-${{ hashFiles('.pre-commit-config.yaml') }}
